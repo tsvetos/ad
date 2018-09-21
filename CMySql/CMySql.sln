@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMySql", "CMySql\CMySql.csproj", "{9001B1A9-3C0C-4247-994A-8FA95C89214E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCategoria", "..\CCategoria\CCategoria\CCategoria.csproj", "{859A0519-017A-475E-BBA9-FFDEDD712790}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{9001B1A9-3C0C-4247-994A-8FA95C89214E}.Debug|x86.Build.0 = Debug|x86
 		{9001B1A9-3C0C-4247-994A-8FA95C89214E}.Release|x86.ActiveCfg = Release|x86
 		{9001B1A9-3C0C-4247-994A-8FA95C89214E}.Release|x86.Build.0 = Release|x86
+		{859A0519-017A-475E-BBA9-FFDEDD712790}.Debug|x86.ActiveCfg = Debug|x86
+		{859A0519-017A-475E-BBA9-FFDEDD712790}.Debug|x86.Build.0 = Debug|x86
+		{859A0519-017A-475E-BBA9-FFDEDD712790}.Release|x86.ActiveCfg = Release|x86
+		{859A0519-017A-475E-BBA9-FFDEDD712790}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
