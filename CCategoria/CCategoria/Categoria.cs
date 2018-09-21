@@ -14,7 +14,7 @@ namespace CCategoria
 			this.nombre = nombre;
 		}
 		public ulong Id { 
-			get { return Id; }
+			get { return id; }
 			set { id = value; }
 		}
 		public string Nombre { 
