@@ -3,8 +3,11 @@ using Gtk;
 
 
 namespace Serpis.Ad{
+	
     public class WindowHelper{
+		
 		public static bool Confirm(Window windowParent, string message){
+			
 			MessageDialog messageDialog = new MessageDialog(
 				windowParent,
 				DialogFlags.Modal,
