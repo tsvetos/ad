@@ -56,6 +56,13 @@ namespace CCategoria {
             dbCommand.ExecuteNonQuery();
         }
 
+		private void delete() {
+            IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
+            dbCommand.CommandText = "delete from categoria where id=4";
+            dbCommand.ExecuteNonQuery();
+        }
+
+
 		private static string deleteSql = "delete from categoria where id = @id";
 		public  static void delete(object id) {
 			IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();

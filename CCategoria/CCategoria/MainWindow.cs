@@ -58,31 +58,7 @@ public partial class MainWindow : Gtk.Window {
         deleteAction.Sensitive = treeViewIsSelected;
     }
 
-    private void insert() {
-        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-        dbCommand.CommandText = "insert into categoria (nombre) values ('categoria 4')";
-        dbCommand.ExecuteNonQuery();
-    }
-
-    private void update() {
-        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-        dbCommand.CommandText = "update categoria set nombre='categoria 4 modificada' where id=4";
-        dbCommand.ExecuteNonQuery();
-    }
-
-    private void update(Categoria categoria) {
-        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-        dbCommand.CommandText = "update categoria set nombre=@nombre where id=@id"; //formateo de parámetros
-        DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
-        DbCommandHelper.AddParameter(dbCommand, "id", categoria.Id);
-        dbCommand.ExecuteNonQuery();
-    }
-
-    private void delete() {
-        IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-        dbCommand.CommandText = "delete from categoria where id=4";
-        dbCommand.ExecuteNonQuery();
-    }
+   
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a) {
         App.Instance.DbConnection.Close();
