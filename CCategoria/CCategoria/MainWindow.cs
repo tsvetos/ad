@@ -1,8 +1,5 @@
 ﻿using Gtk;
 
-using System;
-using System.Data;
-
 using CCategoria;
 using Serpis.Ad;
 using Serpis.Ad.Ventas;
@@ -12,28 +9,28 @@ public partial class MainWindow : Gtk.Window {
 
 
 
-    public MainWindow() : base(Gtk.WindowType.Toplevel) {
-        Build();
+	public MainWindow() : base(Gtk.WindowType.Toplevel) {
+		Build();
 
 		Title = "Categoria";
-      
 
-        TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.Categorias);
 
-        newAction.Activated += delegate {
-            new CategoriaWindow(new Categoria());
-        };
+		TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.Categorias);
 
-        editAction.Activated += delegate {
-            object id = TreeViewHelper.GetId(treeView);
-            Categoria categoria = CategoriaDao.Load(id);
-            new CategoriaWindow(categoria);
-        };
+		newAction.Activated += delegate {
+			new CategoriaWindow(new Categoria());
+		};
+
+		editAction.Activated += delegate {
+			object id = TreeViewHelper.GetId(treeView);
+			Categoria categoria = CategoriaDao.Load(id);
+			new CategoriaWindow(categoria);
+		};
 
 		refreshAction.Activated += delegate {
-           
+
 			TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.Categorias);
-        };
+		};
 
 		deleteAction.Activated += delegate {
 			if (WindowHelper.Confirm(this, "Quieres eliminar el registro?")) {
@@ -42,31 +39,31 @@ public partial class MainWindow : Gtk.Window {
 
 				//CategoriaDao.Delete(id);
 			}
-        };
-      
+		};
 
-        treeView.Selection.Changed += delegate {
-            refreshUI();
-        };
 
-        refreshUI();
-    }
+		treeView.Selection.Changed += delegate {
+			refreshUI();
+		};
 
-   
-    private void refreshUI() {
-        bool treeViewIsSelected = treeView.Selection.CountSelectedRows() > 0;
-        editAction.Sensitive = treeViewIsSelected;
-        deleteAction.Sensitive = treeViewIsSelected;
-    }
+		refreshUI();
+	}
 
-   
 
-    protected void OnDeleteEvent(object sender, DeleteEventArgs a) {
-        App.Instance.DbConnection.Close();
-        Application.Quit();
-        a.RetVal = true;
-    }
+	private void refreshUI() {
+		bool treeViewIsSelected = treeView.Selection.CountSelectedRows() > 0;
+		editAction.Sensitive = treeViewIsSelected;
+		deleteAction.Sensitive = treeViewIsSelected;
+	}
 
-   
+
+
+	protected void OnDeleteEvent(object sender, DeleteEventArgs a) {
+		App.Instance.DbConnection.Close();
+		Application.Quit();
+		a.RetVal = true;
+	}
+
+
 
 }
