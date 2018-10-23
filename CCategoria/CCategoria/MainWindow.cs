@@ -5,6 +5,7 @@ using System.Data;
 
 using CCategoria;
 using Serpis.Ad;
+using Serpis.Ad.Ventas;
 
 
 public partial class MainWindow : Gtk.Window {
