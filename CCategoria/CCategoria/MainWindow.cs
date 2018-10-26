@@ -1,8 +1,14 @@
 ﻿using Gtk;
+using System;
 
 using CCategoria;
 using Serpis.Ad;
 using Serpis.Ad.Ventas;
+
+public class EntityDaoCategoria : EntityDao<Categoria> { 
+
+}
+
 
 
 public partial class MainWindow : Gtk.Window {
@@ -14,8 +20,15 @@ public partial class MainWindow : Gtk.Window {
 
 		Title = "Categoria";
 
+		EntityDaoCategoria entityDaoCategoria = new EntityDaoCategoria();
 
-		TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.Categorias);
+		object defaultUlong = Activator.CreateInstance(typeof(ulong));
+
+		Console.WriteLine("defaultUlong=" + defaultUlong);
+
+
+		//TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.Categorias);
+		TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, entityDaoCategoria.Enumerable);
 
 		newAction.Activated += delegate {
 			new CategoriaWindow(new Categoria());
