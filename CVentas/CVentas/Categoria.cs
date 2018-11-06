@@ -1,9 +1,11 @@
-﻿
+﻿using System;
+
 namespace Serpis.Ad.Ventas {
 
 	public class Categoria {
 		private ulong id;
 		private string nombre = "";
+		private decimal precio = 0;
 
 		public Categoria() {
 		}
@@ -22,6 +24,12 @@ namespace Serpis.Ad.Ventas {
 			get { return nombre; }
 			set { nombre = value; }
 		}
+
+		public decimal Precio{
+			get { return Precio; }
+			set { precio = value; }
+		}
+        
 
 	}
 }

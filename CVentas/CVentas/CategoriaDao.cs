@@ -5,12 +5,14 @@ using System.Data;
 
 namespace Serpis.Ad.Ventas
 {
-	
-    public class CategoriaDao 
-	{
+
+    public class CategoriaDao
+    {
         private static string selectAll = "select id, nombre from categoria order by id";
-        public static IList<Categoria> Categorias {
-            get {
+        public static IList<Categoria> Categorias
+        {
+            get
+            {
                 List<Categoria> categorias = new List<Categoria>();
                 IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
                 dbCommand.CommandText = selectAll;
@@ -23,7 +25,8 @@ namespace Serpis.Ad.Ventas
         }
 
         private static string selectSql = "select * from categoria where id = @id";
-        public static Categoria Load(object id) {
+        public static Categoria Load(object id)
+        {
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
             dbCommand.CommandText = selectSql;
             DbCommandHelper.AddParameter(dbCommand, "id", id);
@@ -36,21 +39,24 @@ namespace Serpis.Ad.Ventas
 
         private static string insertSql = "insert into categoria (nombre) values (@nombre)";
         private static string updateSql = "update categoria set nombre=@nombre where id=@id";
-        public static void Save(Categoria categoria) {
+        public static void Save(Categoria categoria)
+        {
             if (categoria.Id == 0)
                 insert(categoria);
             else
                 update(categoria);
         }
 
-        private static void insert(Categoria categoria) {
+        private static void insert(Categoria categoria)
+        {
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
             dbCommand.CommandText = insertSql;
             DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
             dbCommand.ExecuteNonQuery();
         }
 
-        private static void update(Categoria categoria) {
+        private static void update(Categoria categoria)
+        {
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
             dbCommand.CommandText = updateSql;
             DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
@@ -58,20 +64,13 @@ namespace Serpis.Ad.Ventas
             dbCommand.ExecuteNonQuery();
         }
 
-		private void delete() {
+        private static string deleteSql = "delete from categoria where id = @id";
+        public static void Delete(object id)
+        {
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-            dbCommand.CommandText = "delete from categoria where id=4";
+            dbCommand.CommandText = deleteSql;
+            DbCommandHelper.AddParameter(dbCommand, "id", id);
             dbCommand.ExecuteNonQuery();
         }
-
-
-		private static string deleteSql = "delete from categoria where id = @id";
-		public  static void delete(object id) {
-			IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-			dbCommand.CommandText = deleteSql;
-			DbCommandHelper.AddParameter(dbCommand, "id", id);
-			dbCommand.ExecuteNonQuery();
-		
-		}
     }
 }
