@@ -14,11 +14,11 @@ namespace Serpis.Ad
 
         public EntityDao()
         {
-            foreach (PropertyInfo propertyInfo in entityType.GetProperties())
-                if (propertyInfo.Name == idPropertyName)
+            foreach (PropertyInfo propertyinfo in entityType.GetProperties())
+                if (propertyinfo.Name == idPropertyName)
                     entityPropertyNames.Insert(0, idPropertyName);
                 else
-                    entityPropertyNames.Add(propertyInfo.Name);
+                    entityPropertyNames.Add(propertyinfo.Name);
         }
 
         public IEnumerable Enumerable
@@ -62,7 +62,7 @@ namespace Serpis.Ad
         {
             object id = entityType.GetProperty(idPropertyName).GetValue(entity);
             object defaultId = Activator.CreateInstance(entityType.GetProperty(idPropertyName).PropertyType);
-            if (id.Equals(defaultId))// Id == 0
+            if (id.Equals(defaultId)) // Id == 0
                 insert(entity);
             else
                 update(entity);
@@ -70,23 +70,25 @@ namespace Serpis.Ad
 
         protected void insert(TEntity entity)
         {
-            //TODO implementar
+            //TODO
         }
 
         protected void update(TEntity entity)
         {
-            //TODO implementar
+            //TODO
         }
 
-		protected static string deteleSql = "delete from {0} where {1} = @id";
+		private static string deleteSql = "delete from {0} where {1}= @id";
         public void Delete(object id)
         {
-			string tableName = entityType.Name.ToLower();
+			string tableName = entityType.Name.ToLower();	    
+           
 			IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-			dbCommand.CommandText = string.Format(deteleSql, tableName, idPropertyName.ToLower());
-			DbCommandHelper.AddParameter(dbCommand, "id", id);
+			dbCommand.CommandText = string.Format(deleteSql, tableName, idPropertyName.ToLower());
+            DbCommandHelper.AddParameter(dbCommand, "id", id);
             dbCommand.ExecuteNonQuery();
         }
+
 
     }
 }

@@ -5,10 +5,9 @@ using System.Data;
 
 namespace Serpis.Ad.Ventas
 {
-
     public class CategoriaDao
     {
-        private static string selectAll = "select id, nombre from categoria order by id";
+        private static String selectAll = "select id, nombre from categoria order by id";
         public static IList<Categoria> Categorias
         {
             get
@@ -25,6 +24,7 @@ namespace Serpis.Ad.Ventas
         }
 
         private static string selectSql = "select * from categoria where id = @id";
+
         public static Categoria Load(object id)
         {
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
@@ -38,13 +38,16 @@ namespace Serpis.Ad.Ventas
         }
 
         private static string insertSql = "insert into categoria (nombre) values (@nombre)";
-        private static string updateSql = "update categoria set nombre=@nombre where id=@id";
+
+        private static string updateSql = "update categoria set nombre = @nombre where id = @id";
+
         public static void Save(Categoria categoria)
         {
             if (categoria.Id == 0)
                 insert(categoria);
             else
                 update(categoria);
+
         }
 
         private static void insert(Categoria categoria)
@@ -65,6 +68,7 @@ namespace Serpis.Ad.Ventas
         }
 
         private static string deleteSql = "delete from categoria where id = @id";
+
         public static void Delete(object id)
         {
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();

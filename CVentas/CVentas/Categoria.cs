@@ -1,35 +1,31 @@
 ﻿using System;
+namespace Serpis.Ad.Ventas
+{
+    public class Categoria
+    {
+        private ulong id;
+        private string nombre = "";
 
-namespace Serpis.Ad.Ventas {
+        public Categoria()
+        {
+        }
 
-	public class Categoria {
-		private ulong id;
-		private string nombre = "";
-		private decimal precio = 0;
+        public Categoria(ulong id, string nombre)
+        {
+            this.id = id;
+            this.nombre = nombre;
+        }
 
-		public Categoria() {
-		}
+        public ulong Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
-		public Categoria(ulong id, string nombre) {
-			this.id = id;
-			this.nombre = nombre;
-		}
-
-		public ulong Id {
-			get { return id; }
-			set { id = value; }
-		}
-
-		public string Nombre {
-			get { return nombre; }
-			set { nombre = value; }
-		}
-
-		public decimal Precio{
-			get { return Precio; }
-			set { precio = value; }
-		}
-        
-
-	}
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+    }
 }
