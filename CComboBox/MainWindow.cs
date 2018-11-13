@@ -12,7 +12,6 @@ public partial class MainWindow : Gtk.Window
 		//comboBox.AddAttribute(cellRenderText, "text", 0);
 
 
-
 		var labelCellRenderText = new CellRendererText();
 		comboBox.PackStart(labelCellRenderText, expand: false);
 		comboBox.AddAttribute(labelCellRenderText, "text", 1);

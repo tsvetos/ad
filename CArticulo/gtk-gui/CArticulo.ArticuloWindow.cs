@@ -4,11 +4,11 @@ namespace CArticulo
 {
 	public partial class ArticuloWindow
 	{
-		private global::Gtk.VBox vbox4;
+		private global::Gtk.VBox vbox1;
 
 		private global::Gtk.Table table1;
 
-		private global::Gtk.ComboBox combobox2;
+		private global::Gtk.ComboBox combobox1;
 
 		private global::Gtk.Entry entry1;
 
@@ -20,11 +20,9 @@ namespace CArticulo
 
 		private global::Gtk.SpinButton spinbutton1;
 
-		private global::Gtk.HButtonBox hbuttonbox5;
+		private global::Gtk.HButtonBox hbuttonbox1;
 
-		private global::Gtk.Button button5;
-
-		private global::Gtk.HButtonBox hbuttonbox2;
+		private global::Gtk.Button button1;
 
 		protected virtual void Build()
 		{
@@ -34,19 +32,19 @@ namespace CArticulo
 			this.Title = global::Mono.Unix.Catalog.GetString("ArticuloWindow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child CArticulo.ArticuloWindow.Gtk.Container+ContainerChild
-			this.vbox4 = new global::Gtk.VBox();
-			this.vbox4.Name = "vbox4";
-			this.vbox4.Spacing = 6;
-			// Container child vbox4.Gtk.Box+BoxChild
+			this.vbox1 = new global::Gtk.VBox();
+			this.vbox1.Name = "vbox1";
+			this.vbox1.Spacing = 6;
+			// Container child vbox1.Gtk.Box+BoxChild
 			this.table1 = new global::Gtk.Table(((uint)(3)), ((uint)(2)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.combobox2 = global::Gtk.ComboBox.NewText();
-			this.combobox2.Name = "combobox2";
-			this.table1.Add(this.combobox2);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.combobox2]));
+			this.combobox1 = global::Gtk.ComboBox.NewText();
+			this.combobox1.Name = "combobox1";
+			this.table1.Add(this.combobox1);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.combobox1]));
 			w1.TopAttach = ((uint)(2));
 			w1.BottomAttach = ((uint)(3));
 			w1.LeftAttach = ((uint)(1));
@@ -108,45 +106,37 @@ namespace CArticulo
 			w6.RightAttach = ((uint)(2));
 			w6.XOptions = ((global::Gtk.AttachOptions)(4));
 			w6.YOptions = ((global::Gtk.AttachOptions)(4));
-			this.vbox4.Add(this.table1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.table1]));
+			this.vbox1.Add(this.table1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.table1]));
 			w7.Position = 0;
 			w7.Expand = false;
 			w7.Fill = false;
-			// Container child vbox4.Gtk.Box+BoxChild
-			this.hbuttonbox5 = new global::Gtk.HButtonBox();
-			this.hbuttonbox5.Name = "hbuttonbox5";
-			this.hbuttonbox5.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
-			// Container child hbuttonbox5.Gtk.ButtonBox+ButtonBoxChild
-			this.button5 = new global::Gtk.Button();
-			this.button5.CanFocus = true;
-			this.button5.Name = "button5";
-			this.button5.UseUnderline = true;
-			this.button5.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
-			this.hbuttonbox5.Add(this.button5);
-			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox5[this.button5]));
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.hbuttonbox1 = new global::Gtk.HButtonBox();
+			this.hbuttonbox1.Name = "hbuttonbox1";
+			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+			this.button1 = new global::Gtk.Button();
+			this.button1.CanFocus = true;
+			this.button1.Name = "button1";
+			this.button1.UseUnderline = true;
+			this.button1.Label = global::Mono.Unix.Catalog.GetString("Guardar");
+			this.hbuttonbox1.Add(this.button1);
+			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.button1]));
 			w8.Expand = false;
 			w8.Fill = false;
-			this.vbox4.Add(this.hbuttonbox5);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbuttonbox5]));
+			this.vbox1.Add(this.hbuttonbox1);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
 			w9.Position = 1;
 			w9.Expand = false;
 			w9.Fill = false;
-			// Container child vbox4.Gtk.Box+BoxChild
-			this.hbuttonbox2 = new global::Gtk.HButtonBox();
-			this.hbuttonbox2.Name = "hbuttonbox2";
-			this.vbox4.Add(this.hbuttonbox2);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbuttonbox2]));
-			w10.Position = 2;
-			w10.Expand = false;
-			w10.Fill = false;
-			this.Add(this.vbox4);
+			this.Add(this.vbox1);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 400;
-			this.DefaultHeight = 138;
+			this.DefaultHeight = 148;
 			this.Show();
 		}
 	}
