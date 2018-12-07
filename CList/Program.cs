@@ -6,6 +6,8 @@ namespace CList
 	{
 		public static void Main(string[] args)
 		{
+
+            //INSERT
 			List<string> propertyNames = new List<string>(new string[] { "Id", "Nombre", "Precio", "Categoria" });
 
 			//List<string> fieldsWithoutId = propertyNames.GetRange(1, propertyNames.Count - 1);
@@ -37,8 +39,7 @@ namespace CList
 				parameters.Add("@" + propertyNames[index]);
 			}
 
-
-
+            //UPDATE
 			string fieldNameCsv = string.Join(", ", fieldsWithoutId).ToLower();
 			Console.WriteLine("FieldNamesCsv=" + fieldNameCsv);
 
@@ -56,13 +57,7 @@ namespace CList
 			}
 			string filedParametersPairsCsv = string.Join(",", filedParametersPairs).ToLower();
 			Console.WriteLine("fieldParameterPairsCsv= " + filedParametersPairsCsv);
-
-
-
-
-
 		}
 	}
-
 
 }

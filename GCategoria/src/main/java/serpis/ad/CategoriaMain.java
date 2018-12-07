@@ -1,41 +1,65 @@
 package serpis.ad;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
-
-import Menu;
-import ScannerHelper;
-import Menu.Action;
-
-import java.util.ArrayList;
 
 public class CategoriaMain {
 	
 	
-	
-	private static boolean exit = false;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
+		App.getInstance().setConnection(
+				DriverManager.getConnection("jdbc:mysql://localhost/dbprueba?user=root&password=sistemas")
+		);
 		Menu.create("Menu categoría")
 		.exitWhen("\t0 - Salir")
 		.add("\t1 - Nuevo", CategoriaMain::nuevo)
 		.add("\t2 - Editar", CategoriaMain::editar)
 		.loop();
-		
-		
-		List<Action> actions = new ArrayList<>();
-		actions.add( () -> exit = true);
-		actions.add( CategoriaMain:: nuevo);
-		actions.add( CategoriaMain:: editar);
-
-
+	
 	}
 	
-	public static void nuevo() {
-		System.out.println("Método nuevo");
+	public static void tryAction(DaoAction daoAction, String errorMessage) {
+		
+	}
+	
+	public static void nuevo() throws SQLException {
+		Categoria categoria = new Categoria();
+		CategoriaConsole.newCategoria(categoria);
+		CategoriaDao.save(categoria);
 	}
 	
 	public static void editar() {
-		System.out.println("Método editar");
-		int id = ScannerHelper.getInt("Id: ");
+		long id = CategoriaConsole.getId();
+		Categoria categoria = CategoriaDao.load(id);
+		if(categoria == null) {
+			CategoriaConsole.idNotExists();
+			return;
+		}
+		CategoriaConsole.newCategoria(categoria);
+		CategoriaDao.save(categoria);
+		
+		
+	}
+	public static void eliminar() {
+		long id = CategoriaConsole.getId();
+		if(CategoriaConsole.deleteConfirm())
+			CategoriaDao.delete(id);
+	}
+	
+	public static void consultar() {
+		long id = CategoriaConsole.getId();
+		Categoria categoria = CategoriaDao.load(id);
+		if(categoria == null) {
+			CategoriaConsole.idNotExists();
+			return;
+		}
+		CategoriaConsole.show(categoria);
+	}
+	
+	public static void listar() {
+		List<Categoria> categorias = CategoriaDao.getAll();
+		CategoriaConsole.showList(categorias);
 	}
 	
 	

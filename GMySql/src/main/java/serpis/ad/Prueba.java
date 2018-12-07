@@ -18,12 +18,6 @@ public class Prueba {
 		
 		//insert();
 		loadAll();
-		
-	
-				
-		
-		
-		
 	}
 	
 	public static void loadAll() throws SQLException {
@@ -53,8 +47,7 @@ public class Prueba {
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
-			
-			
+				
 			
 		} catch (SQLException e) {
 			System.out.println(e);

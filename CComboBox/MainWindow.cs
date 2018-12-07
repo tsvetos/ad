@@ -46,8 +46,6 @@ public partial class MainWindow : Gtk.Window
 		comboBox.SetActiveIter(initialTreeIter);
     }
 
-    
-
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
     {
         Application.Quit();
