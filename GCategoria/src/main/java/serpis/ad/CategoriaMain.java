@@ -6,6 +6,11 @@ import java.util.List;
 
 public class CategoriaMain {
 	
+	@FunctionalInterface
+	interface DaoAction{
+		void execute() throws SQLException;
+	}
+	
 	
 	public static void main(String[] args) throws SQLException {
 		App.getInstance().setConnection(
@@ -13,13 +18,21 @@ public class CategoriaMain {
 		);
 		Menu.create("Menu categoría")
 		.exitWhen("\t0 - Salir")
-		.add("\t1 - Nuevo", CategoriaMain::nuevo)
-		.add("\t2 - Editar", CategoriaMain::editar)
+		.add("\t1 - Nuevo", () -> tryAction(CategoriaMain::nuevo, "No se ha podido insterar."))
+		.add("\t2 - Editar", () -> tryAction(CategoriaMain::editar, "No se ha podido mofificar."))
+		.add("\t3 - Eliminar", () -> tryAction(CategoriaMain::eliminar, "No se ha podido eliminar."))
+		.add("\t4 - Consultar", () -> tryAction(CategoriaMain::consultar, "No se ha podido realizar la consulta."))
+		.add("\t5 - Listar", () -> tryAction(CategoriaMain::listar, "No se ha podido realizar la consulta."))
 		.loop();
 	
 	}
 	
 	public static void tryAction(DaoAction daoAction, String errorMessage) {
+		try {
+			daoAction.execute();
+		}catch (SQLException ex) {
+			System.out.println(errorMessage);
+		}
 		
 	}
 	
