@@ -22,8 +22,7 @@ public class CategoriaConsole {
 	}
 	
 	public static boolean deleteConfirm() {
-		if(ScannerHelper.getConfirm("") == 'y' | ScannerHelper.getConfirm("") == 'Y');
-		return true;
+		return ScannerHelper.getConfirm("Seguro que quieres eliminar?").equalsIgnoreCase("s");
 	}
 	
 	public static void show(Categoria categoria) {

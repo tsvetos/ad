@@ -13,17 +13,26 @@ public class CategoriaDao {
 	
 	private static String insertSql = "insert into categoria (nombre) values (?)";
 	public static int insert(Categoria categoria) throws SQLException {
-		PreparedStatement preparedStatement = App.getInstance().getConnection().prepareStatement(insertSql);
-		preparedStatement.setObject(1, categoria.getNombre());
-		return preparedStatement.executeUpdate();
+		try(PreparedStatement ps = App.getInstance().getConnection().prepareStatement(insertSql)) {
+			ps.setObject(1, categoria.getNombre());
+			return ps.executeUpdate();
+		}
+		
+		//PreparedStatement preparedStatement = App.getInstance().getConnection().prepareStatement(insertSql);
+		//preparedStatement.setObject(1, categoria.getNombre());
+		//int rowCount =  preparedStatement.executeUpdate();
+		//preparedStatement.close();
+		//return rowCount;
 	}
 	
-	private static String updateSql = "update categoria set nombre = ?, where id = ?";
+	private static String updateSql = "update categoria set nombre = ? where id = ?";
 	private static int update(Categoria categoria) throws SQLException{
 		PreparedStatement ps = App.getInstance().getConnection().prepareStatement(updateSql);
-		ps.setObject(0, categoria.getId());
 		ps.setObject(1, categoria.getNombre());
-		return ps.executeUpdate();
+		ps.setObject(2, categoria.getId());
+		int rowCount = ps.executeUpdate();
+		ps.close();
+		return rowCount;
 	}
 	
 	/**
@@ -64,11 +73,10 @@ public class CategoriaDao {
 
 	private static String deleteSql = "delete from categoria where id = ?";
 	public static int delete(long id)throws SQLException {
-	
+		
 		PreparedStatement ps = App.getInstance().getConnection().prepareStatement(deleteSql);
 		ps.setObject(1, id);
 		return ps.executeUpdate();
-	
 	}
 	
 	
@@ -84,9 +92,9 @@ public class CategoriaDao {
 	    	//categoria.setId( ((BigInteger)rst.getObject("id")).longValue()  );
 	    	categoria.setId( rst.getLong("id")  );
 	    	categoria.setNombre((String)rst.getObject("nombre"));
-	    	
 	    	categorias.add(categoria);
 	    }
+	    
 	    stm.close();
 	    return categorias;
 		
