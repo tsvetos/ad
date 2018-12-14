@@ -18,7 +18,7 @@ public class CategoriaDao {
 		return preparedStatement.executeUpdate();
 	}
 	
-	private static String updateSql = "update categoria set nombre = @nombre where id = @id";
+	private static String updateSql = "update categoria set nombre = ?, where id = ?";
 	private static int update(Categoria categoria) throws SQLException{
 		PreparedStatement ps = App.getInstance().getConnection().prepareStatement(updateSql);
 		ps.setObject(0, categoria.getId());
@@ -26,6 +26,13 @@ public class CategoriaDao {
 		return ps.executeUpdate();
 	}
 	
+	/**
+	 * Presiste en la base de datos la categoria
+	 * Realiza un insert(si Id = 0) o update (si Id <> 0)
+	 * @param categoria
+	 * @return Nº de filas insertadas o modificadas (1 si ha tenido exito)
+	 * @throws SQLException
+	 */
 	public static int save(Categoria categoria) throws SQLException {
 		if (categoria.getId() == 0)
 			return insert(categoria);
@@ -34,12 +41,18 @@ public class CategoriaDao {
 	}
 	
 	private static String selectSql = "select id, nombre from categoria where id = ?";
+	/**
+	 * Lee de la base de datos la categoria con el id indicado
+	 * @param id
+	 * @return categoria con ese id o null si no existe
+	 * @throws SQLException
+	 */
 	public static Categoria load(long id)throws SQLException {
 		PreparedStatement ps = App.getInstance().getConnection().prepareStatement(selectSql);
 		ps.setObject(1, id);
 		ResultSet rst = ps.executeQuery();
 		
-		if(rst.next()) {;
+		if(rst.next()) {
 			Categoria categoria = new Categoria();
 			categoria.setId( rst.getLong("id")  );
 			categoria.setNombre((String)rst.getObject("nombre"));

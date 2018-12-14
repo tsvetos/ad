@@ -32,5 +32,14 @@ public class ScannerHelper {
 			
 		}
 	}
+	
+	public static char getConfirm(String label) {
+		while(true) {
+			System.out.println(label);
+			String confirm = scanner.nextLine();
+			return confirm.toLowerCase().charAt(0);
+		}
+		
+	}
 
 }

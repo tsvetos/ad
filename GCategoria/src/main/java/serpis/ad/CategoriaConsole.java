@@ -22,6 +22,7 @@ public class CategoriaConsole {
 	}
 	
 	public static boolean deleteConfirm() {
+		if(ScannerHelper.getConfirm("") == 'y' | ScannerHelper.getConfirm("") == 'Y');
 		return true;
 	}
 	

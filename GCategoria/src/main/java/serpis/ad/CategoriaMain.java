@@ -19,7 +19,7 @@ public class CategoriaMain {
 		);
 		Menu.create("Menu categoría")
 		.add("\t1 - Nuevo", () -> tryAction(CategoriaMain::nuevo, "No se ha podido insterar."))
-		.add("\t2 - Editar", () -> tryAction(CategoriaMain::editar, "No se ha podido mofificar."))
+		.add("\t2 - Editar", () -> tryAction(CategoriaMain::editar, "No se ha podido modificar."))
 		.add("\t3 - Eliminar", () -> tryAction(CategoriaMain::eliminar, "No se ha podido eliminar."))
 		.add("\t4 - Consultar", () -> tryAction(CategoriaMain::consultar, "No se ha podido realizar la consulta."))
 		.add("\t5 - Listar", () -> tryAction(CategoriaMain::listar, "No se ha podido realizar la consulta."))
