@@ -5,7 +5,7 @@ import java.util.List;
 public class CategoriaConsole {
 	
 	public static long getId() {
-		return -1;
+		return ScannerHelper.getInt("Elige id:");
 	}
 	
 	public static void newCategoria(Categoria categoria) {
@@ -22,17 +22,17 @@ public class CategoriaConsole {
 	}
 	
 	public static boolean deleteConfirm() {
-		return false;
+		return true;
 	}
 	
 	public static void show(Categoria categoria) {
-		
+		System.out.printf("%5s %-20s []\n", categoria.getId(), categoria.getNombre());
 	}
 	
 	public static void showList(List<Categoria> categorias) {
-		for(Categoria categoria : categorias) {
+		for(Categoria categoria : categorias) 
 			System.out.printf("%5s %-20s []\n", categoria.getId(), categoria.getNombre());
-		}
+		
 		
 	}
 

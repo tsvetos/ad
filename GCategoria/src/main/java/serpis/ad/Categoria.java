@@ -5,6 +5,15 @@ public class Categoria {
 	private String nombre;
 	
 
+	public Categoria(long id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	public Categoria() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public long getId() {
 		return id;
 	}
