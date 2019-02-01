@@ -20,3 +20,9 @@
 git config-- global user.name dwakeherrera
 git config-- global user.email deivid.wgh@gmail.com
 git config --global push.default simple
+
+20190115
+Relacion tablas
+cliente -> id, nombre
+pedido -> id, cliente, fecha, [importe]
+pedidolinea -> id, pedido, articulo, precio*, unidades,  [importe]
