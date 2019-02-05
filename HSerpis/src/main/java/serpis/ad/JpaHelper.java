@@ -8,7 +8,15 @@ import javax.persistence.EntityManagerFactory;
 
 public class JpaHelper {
 	
-	public static void doInJPA(EntityManagerFactory entityManagerFactory, Consumer<EntityManager> consumer) {
+	
+	
+	
+	public static void execute (Consumer<EntityManager> consumer) {
+		execute(App.getInstance().getEntityManagerFactory(), consumer);
+	}
+	
+	
+	public static void execute(EntityManagerFactory entityManagerFactory, Consumer<EntityManager> consumer) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
@@ -17,6 +25,8 @@ public class JpaHelper {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
+	
+	
 	
 	public static <R> R doInJPA(EntityManagerFactory entityManagerFactory, Function<EntityManager, R> function ) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();

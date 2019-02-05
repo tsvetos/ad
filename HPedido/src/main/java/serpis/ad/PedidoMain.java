@@ -23,9 +23,12 @@ public class PedidoMain {
 	
 	private static EntityManagerFactory entityManagerFactory;
 	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		
-		App.getInstance();
+		App.getInstance().setEntitiManagerFactory(entityManagerFactory);
+		
+		
 		
 		entityManagerFactory = Persistence.createEntityManagerFactory("serpis.ad.hmysql");
 		
@@ -44,6 +47,11 @@ public class PedidoMain {
 		
 		show(articulo);
 		//actualizarArticulo();
+		
+		Articulo articulo3 = JpaHelper.execute(entityManager -> {
+			return entityManager.find(Articulo.class, 1.3L)
+		});
+		
 		
 		
 		entityManager.getTransaction().commit();
@@ -96,15 +104,38 @@ public class PedidoMain {
 		entityManager.getTransaction().begin();
 		
 		Articulo articulo = new Articulo();
-		articulo.setId((long) 1);
+		articulo.setId((long) 28);
 		articulo = entityManager.find(Articulo.class, articulo.getId());
 		
-		articulo.setId((long)4);
+		articulo.setId((long)38);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		
 		entityManagerFactory.close();
 		
+	}
+	
+	public static void doInJPA(EntityManagerFactory entityManagerFactory, Consumer<EntityManager> consumer) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		consumer.accept(entityManager);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+	}
+	
+	
+	
+	public static <R> R doInJPA(EntityManagerFactory entityManagerFactory, Function<EntityManager, R> function ) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+	
+		R result = function.apply(entityManager);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return result;
 	}
 	
 
