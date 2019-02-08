@@ -17,7 +17,7 @@ public class App {
 		return entityManagerFactory;
 	}
 	
-	public void setEntitiManagerFactory(EntityManagerFactory entityManagerFactory) {
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 }
