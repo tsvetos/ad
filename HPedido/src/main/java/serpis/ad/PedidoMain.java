@@ -13,6 +13,7 @@ import java.util.function.Function;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import com.mysql.cj.Query;
@@ -24,7 +25,16 @@ public class PedidoMain {
 	Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		App.getInstance().setEntityManagerFactory(Persistence.createEntityManagerFactory("serpis.ad.hmysql"));
+		try {
+			execute();
+		}catch(PersistenceException ex) {
+			PersistenceExceptionHelper.show(ex);
+		}
+	}
+	
+	private static void execute() {
+		//TODO App.getInstance().setEntityManagerFactory(Persistence.createEntityManagerFactory("serpis.ad.hmysql"));
+
 		
 		List<Categoria> categorias = JpaHelper.execute(entityManager -> {
 			return entityManager.createQuery("select c from Categoria c order by id", Categoria.class).getResultList();
@@ -49,9 +59,7 @@ public class PedidoMain {
 		
 		show(articulo4);
 		
-		App.getInstance().getEntityManagerFactory().close();
-
-		
+		//TODOApp.getInstance().getEntityManagerFactory().close();
 		
 	}
 
@@ -73,8 +81,7 @@ public class PedidoMain {
 		Articulo articulo = new Articulo();
 		articulo.setNombre("nuevo " + LocalDateTime.now());
 		articulo.setPrecio(new BigDecimal(1.5));
-		return articulo;
-		
+		return articulo;	
 	}
 	
 	
@@ -90,7 +97,6 @@ public class PedidoMain {
 
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		
 	}
 	
 	private static void remove(Pedido pedido) {
@@ -103,7 +109,6 @@ public class PedidoMain {
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		
 	}
 	
 	private static void remove(PedidoLinea pedidolinea) {
@@ -115,7 +120,6 @@ public class PedidoMain {
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		
 	}
 	
 	
@@ -134,7 +138,6 @@ public class PedidoMain {
 		entityManager.close();
 		
 		entityManagerFactory.close();
-		
 	}
 	
 	
